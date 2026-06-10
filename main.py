@@ -1,6 +1,7 @@
 """
 Sakila DVD 租赁管理系统 — 主入口
 """
+import hashlib
 import tkinter
 import tkinter.ttk
 from tkinter.ttk import Notebook
@@ -56,13 +57,15 @@ def run():
         if not username:
             showerror(title='登录失败', message='用户名不能为空')
             return
-        if not password:
-            showerror(title='登录失败', message='密码不能为空')
-            return
+
+        if password:
+            pw_sql = f'password="{hashlib.sha1(password.encode()).hexdigest()}"'
+        else:
+            pw_sql = 'password IS NULL'
 
         rows = querySql(
             f'SELECT staff_id, first_name, last_name, email, store_id '
-            f'FROM staff WHERE username="{username}" AND password="{password}"'
+            f'FROM staff WHERE username="{username}" AND {pw_sql}'
         )
         if not rows:
             showerror(title='登录失败', message='用户名或密码错误')
