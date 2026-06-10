@@ -104,9 +104,11 @@ class SakilaApp:
         notebook.place(x=5, y=5, width=970, height=685)
 
         # 注册各模块
-        notebook.add(rental_ui.create_rental_frame(notebook), text='租赁处理')
+        notebook.add(rental_ui.create_rental_frame(notebook, self.staff_info),
+                     text='租赁处理')
         notebook.add(customer_ui.create_customer_frame(notebook), text='客户管理')
-        notebook.add(inventory_ui.create_inventory_frame(notebook), text='库存管理')
+        notebook.add(inventory_ui.create_inventory_frame(notebook, self.staff_info),
+                     text='库存管理')
         notebook.add(film_ui.create_film_frame(notebook), text='电影管理')
         notebook.add(actor_ui.create_actor_frame(notebook), text='演员管理')
 
