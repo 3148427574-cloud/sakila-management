@@ -33,11 +33,16 @@ mysql -u root -p < sakila-db/sakila-schema.sql
 mysql -u root -p < sakila-db/sakila-data.sql
 ```
 
-### 2. 安装依赖
+### 2. 创建虚拟环境并安装依赖
 
 ```bash
+python3.12 -m venv .venv
+source .venv/bin/activate   # macOS/Linux
+# .venv\Scripts\activate    # Windows
 pip install pymysql
 ```
+
+> 需要 Python 3.12+（macOS 系统自带 Python 的 Tk 8.5 有渲染 bug，必须用 Homebrew 安装的 Python 3.12 获得 Tk 9.0）。
 
 ### 3. 修改数据库配置
 
@@ -46,7 +51,8 @@ pip install pymysql
 ### 4. 运行
 
 ```bash
-python main.py
+.venv/bin/python main.py     # macOS/Linux
+# .venv\Scripts\python main.py  # Windows
 ```
 
 ### 5. 登录
