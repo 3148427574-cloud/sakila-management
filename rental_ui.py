@@ -162,11 +162,11 @@ def create_rental_frame(parent, staff_info=None):
 
     # ======== 区域3: 当前在借 (归还) ========
     return_frame = tkinter.LabelFrame(frame, text='归还操作 — 当前在借记录')
-    return_frame.place(x=10, y=295, width=940, height=370)
+    return_frame.pack(side=tkinter.BOTTOM, fill=tkinter.BOTH, expand=True, padx=5, pady=5)
 
     return_tree = Treeview(return_frame,
                            columns=('rid', 'cname', 'ftitle', 'iid', 'rdate', 'days'),
-                           show='headings', height=12)
+                           show='headings', height=10)
     return_tree.column('rid', width=60, anchor='center')
     return_tree.column('cname', width=150, anchor='center')
     return_tree.column('ftitle', width=300, anchor='center')
@@ -179,7 +179,7 @@ def create_rental_frame(parent, staff_info=None):
     return_tree.heading('iid', text='拷贝ID')
     return_tree.heading('rdate', text='租出日期')
     return_tree.heading('days', text='已租天数')
-    return_tree.place(x=5, y=5, width=925, height=300)
+    return_tree.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True, padx=3, pady=3)
 
     def return_click(event):
         global selected_rental_id
@@ -221,9 +221,11 @@ def create_rental_frame(parent, staff_info=None):
             load_rented()
             load_available()
 
-    tkinter.Button(return_frame, text='刷新', command=load_rented).place(x=5, y=315)
-    tkinter.Button(return_frame, text='确认归还', width=12, height=2,
-                   command=return_item).place(x=800, y=312)
+    btn_return = tkinter.Frame(return_frame)
+    btn_return.pack(side=tkinter.BOTTOM, fill=tkinter.X, padx=3, pady=3)
+    tkinter.Button(btn_return, text='刷新', command=load_rented).pack(side=tkinter.LEFT)
+    tkinter.Button(btn_return, text='确认归还', width=12, height=2,
+                   command=return_item).pack(side=tkinter.RIGHT)
 
     # 初始化
     search_customers()

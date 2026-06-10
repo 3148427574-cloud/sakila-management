@@ -26,7 +26,7 @@ def create_inventory_frame(parent, staff_info=None):
 
     # --- 表格 ---
     table_frame = tkinter.Frame(frame)
-    table_frame.place(x=10, y=90, width=940, height=580)
+    table_frame.pack(side=tkinter.BOTTOM, fill=tkinter.BOTH, expand=True, padx=5, pady=5)
 
     scrollbar = tkinter.Scrollbar(table_frame)
     scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)

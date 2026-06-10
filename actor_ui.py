@@ -25,8 +25,11 @@ def create_actor_frame(parent):
     entry_last.place(x=260, y=10, width=160, height=25)
 
     # --- 演员表格 ---
-    table_frame = tkinter.Frame(frame)
-    table_frame.place(x=10, y=90, width=450, height=580)
+    bottom_frame = tkinter.Frame(frame)
+    bottom_frame.pack(side=tkinter.BOTTOM, fill=tkinter.BOTH, expand=True, padx=5, pady=5)
+
+    table_frame = tkinter.Frame(bottom_frame)
+    table_frame.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True, padx=(0, 3))
 
     scrollbar = tkinter.Scrollbar(table_frame)
     scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
@@ -44,8 +47,8 @@ def create_actor_frame(parent):
     scrollbar.config(command=tree.yview)
 
     # --- 参演作品区 ---
-    film_label = tkinter.LabelFrame(frame, text='参演作品')
-    film_label.place(x=470, y=90, width=460, height=580)
+    film_label = tkinter.LabelFrame(bottom_frame, text='参演作品')
+    film_label.pack(side=tkinter.RIGHT, fill=tkinter.BOTH, expand=True, padx=(3, 0))
 
     film_tree = Treeview(film_label,
                          columns=('fid', 'ftitle', 'fyear', 'frating'),
@@ -58,7 +61,7 @@ def create_actor_frame(parent):
     film_tree.heading('ftitle', text='片名')
     film_tree.heading('fyear', text='年份')
     film_tree.heading('frating', text='分级')
-    film_tree.place(x=5, y=5, width=445, height=545)
+    film_tree.pack(fill=tkinter.BOTH, expand=True, padx=3, pady=3)
 
     def bind_data(rows=None):
         for row in tree.get_children():

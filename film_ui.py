@@ -107,7 +107,7 @@ def create_film_frame(parent):
 
     # --- 表格 ---
     table_frame = tkinter.Frame(frame)
-    table_frame.place(x=10, y=240, width=940, height=430)
+    table_frame.pack(side=tkinter.BOTTOM, fill=tkinter.BOTH, expand=True, padx=5, pady=5)
 
     scrollbar = tkinter.Scrollbar(table_frame)
     scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
